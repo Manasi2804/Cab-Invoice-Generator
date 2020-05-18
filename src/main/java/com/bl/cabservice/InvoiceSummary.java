@@ -10,7 +10,6 @@ public class InvoiceSummary {
         this.totalFare = totalFare;
         this.averageFarePerRide = totalFare / noOfRides;
     }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -19,19 +18,5 @@ public class InvoiceSummary {
         return noOfRides == that.noOfRides &&
                 Double.compare(that.totalFare, totalFare) == 0 &&
                 Double.compare(that.averageFarePerRide, averageFarePerRide) == 0;
-    }
-
-    @Override
-    public int hashCode() {
-        return 0;
-    }
-
-    @Override
-    public String toString() {
-        return "InvoiceSummary -> {" +
-                "noOfRides=" + noOfRides +
-                ", totalFare=" + totalFare +
-                " , averageFarePerRide=" + averageFarePerRide +
-                '}';
     }
 }

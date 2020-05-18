@@ -3,12 +3,25 @@ package com.bl.cabservice;
 import java.util.ArrayList;
 
 public class InVoiceGenerator {
-    private static final double RATE_PER_KM = 10;
-    private static final int RATE_PER_MIN = 1;
-    private static final double MINIMUM_FARE = 5.0;
+    private double RATE_PER_KM;
+    private int RATE_PER_MIN;
+    private double MINIMUM_FARE;
+    public enum subscriptionPlan {NORMAL, PREMIUM}
     RideRepository rideRepository = new RideRepository();
     ArrayList<Ride> listOfRides = new ArrayList<Ride>();
 
+    public InVoiceGenerator(InVoiceGenerator.subscriptionPlan plan) {
+        if (plan.equals(subscriptionPlan.NORMAL)) {
+            this.RATE_PER_KM = 10;
+            this.RATE_PER_MIN = 1;
+            this.MINIMUM_FARE = 5;
+        }
+        if (plan.equals(subscriptionPlan.PREMIUM)) {
+            this.RATE_PER_KM = 15;
+            this.RATE_PER_MIN = 2;
+            this.MINIMUM_FARE = 20;
+        }
+    }
     public double calculateFare(double distance, int time) {
         double totalFare = RATE_PER_KM * distance + RATE_PER_MIN * time;
         return Math.max(totalFare, MINIMUM_FARE);
